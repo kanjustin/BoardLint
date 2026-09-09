@@ -10,6 +10,12 @@ CLI -> services/review.py -> parsers/kicad.py -> normalized Board
 CLI <---------------------------------------------------------+
 ```
 
+The early web workspace adds a browser adapter: file bytes -> module worker ->
+Pyodide -> the same Python `review_file` service -> JSON -> React results. It uses
+a static export and same-origin runtime assets, so no PCB upload server is needed.
+The Python source snapshot is refreshed from the canonical package on local and
+monorepo builds and tested for parity. See [web implementation](../web/README.md).
+
 Rules accept normalized objects only. Future input adapters feed the same model;
 the future HTTP layer calls the same review service as the CLI. The viewer consumes
 normalized geometry and report locations. AI, if added, consumes evidence rather

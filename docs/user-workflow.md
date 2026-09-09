@@ -56,7 +56,16 @@ There is no interactive viewer, automatic fix, or revision comparison yet.
 No findings means only that this check found no below-threshold routed widths.
 If a schematic is selected, BoardLint explains that it needs the PCB layout file.
 
-## Intended web experience: planned
+## Review in the browser: early implementation
+
+The initial website now provides file drop/selection, a review threshold, real
+analysis, paginated findings with source locations, and JSON download. Choose
+your file and click **Review board**, or select **Try the example board** first.
+Processing happens in your browser; your PCB is not uploaded or retained on a
+server. The first run downloads the engine, so it can take a moment to start.
+You can cancel an active review. The current check still covers trace widths only.
+
+## Full visual review experience: planned
 
 ```text
 Save PCB layout in KiCad

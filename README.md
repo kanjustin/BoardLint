@@ -10,9 +10,29 @@ reports the evidence behind each finding. The goal is to combine repeatable
 analysis with clear explanations, visual navigation, and eventually revision-aware
 review workflows.
 
-**Development status:** experimental local CLI with one working rule. The base
-structure and planning documents are in place; the five-rule MVP and web viewer
-are still in development.
+**Development status:** experimental CLI and browser review workspace with one
+working rule. Drop a board into the website to run the existing Python analyzer
+on your device. The five-rule MVP and visual PCB viewer remain in development.
+
+## Browser review
+
+Open [BoardLint](https://boardlint.vercel.app) and try the example board or choose
+your own supported layout.
+
+The website lives in `web/` and accepts one `.kicad_pcb` file up to 25 MiB.
+Choose a width threshold, run a review, inspect findings and source coordinates,
+and download JSON. A small example board is included.
+
+```sh
+cd web
+npm ci
+npm run dev
+```
+
+Requires Node.js 22.13+ (Node 24 is used in CI). The first review loads a Python
+WebAssembly runtime served by the same website. Board bytes stay in the browser;
+there is no upload endpoint or persisted review history. Reviews run in a separate
+worker and can be canceled. See [web development and deployment](web/README.md).
 
 ## What works today
 
@@ -26,7 +46,7 @@ are still in development.
 
 The current model does not include pads, board outlines, zones, component extents,
 or electrical connectivity analysis. Component-to-edge checks, other rules,
-grouping, suppressions, file upload, and visual highlighting are planned.
+grouping, suppressions, server-side file storage, and visual highlighting are planned.
 
 ## Which file should I use?
 
@@ -117,9 +137,9 @@ Makefile         Development commands
 pyproject.toml   Python package configuration
 ```
 
-The parser, model, rules, and interface are separate so the future HTTP API can
-reuse the same review service. Frontend, API, database, and AI services are not
-implemented yet.
+The parser, model, rules, and interface are separate. The browser frontend bundles
+the same Python source and invokes its review service through Pyodide. An HTTP API,
+database, and AI services are not implemented yet.
 
 ## Development and validation
 
@@ -146,7 +166,8 @@ for the exact scope and outstanding checks.
 2. **Geometry:** validated outlines and component geometry for edge-clearance review.
 3. **CLI MVP:** approximately five reliable rules, configuration, grouping, and
    reasoned suppressions, calibrated on real boards.
-4. **Web pilot:** upload, understandable reports, and a 2D viewer with linked findings.
+4. **Web pilot:** browser file selection and reports are available early; a 2D
+   viewer with linked findings follows validated geometry.
 5. **Later:** contextual heuristics, revision comparison, CI integration, and optional
    AI explanations grounded in measured evidence.
 

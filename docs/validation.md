@@ -2,6 +2,28 @@
 
 Initial session: September 9, 2026.
 
+## Early browser workspace
+
+Resumed-session verification (September 9, 2026): all 10 Python tests, all four
+Node runtime tests, TypeScript checking, and the CLI example passed. The static
+production build passed after allowing its temporary localhost prerender server.
+Vercel's project settings now select `web`, framework Other, and `dist/client`.
+Production deployment `dpl_GWDAdJRpurDFmepTm3ctUDNPrqwu` reached READY at
+https://boardlint.vercel.app. HTTP checks returned 200 for the page, worker,
+Python source snapshot, and WebAssembly binary with appropriate content types.
+These HTTP checks do not establish browser interaction or visual correctness.
+
+Four Node tests pass using actual Pyodide 314.0.6: browser-runtime/native-CLI report
+parity, threshold/no-track/schematic/version handling, size/malformed-input limits
+and temporary-file cleanup, and engine snapshot parity. TypeScript checking and
+the static production build pass locally. The existing 10 Python tests are rerun
+for this increment. Browser interaction QA and optional WebMCP integration remain
+unverified; no connected browser was available for preview handoff.
+
+The frontend now exists. It runs one check locally in a browser worker and exports
+reports; it does not implement an API, board visualization or hosted file storage.
+The older initial-session limitations below describe the earlier CLI baseline.
+
 ## Base structure follow-up
 
 `make check` now passes all 10 tests on Python 3.14.4. Two service-boundary tests
@@ -64,7 +86,8 @@ useful. They are not 857 demonstrated design errors.
 - No component-to-edge calculation yet.
 - Reader validates required extracted fields, not full KiCad file semantics.
 - No real-board false-positive baseline or performance benchmark yet.
-- No viewer, API, upload service, AI, revision comparison or deployed application.
+- No viewer, API, upload service, AI or revision comparison. The browser workspace
+  is deployed, with local file processing.
 
 Next verification is a pinned, redistributable routed corpus with repeatable native
 cross-checks, followed by human review of usefulness and false positives.

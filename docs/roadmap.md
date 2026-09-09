@@ -4,6 +4,11 @@ Start: September 9, 2026. Twelve weeks ends around December 2; sixteen around
 December 30. Dates assume steady weekly availability, which is not yet known.
 Advance on evidence, and reduce scope if accuracy work takes longer.
 
+Owner-directed sequence change: bring the browser file-review flow forward so
+users can run the current engine without a CLI. The early implementation uses
+local browser processing and measured text/JSON findings. It does not complete
+the five-rule, geometry, hosted-storage or PCB-viewer milestones below.
+
 | Window | Deliverable | Exit evidence |
 | --- | --- | --- |
 | Weeks 1–2 | Parser/CLI foundation and one rule | Real routed board read; independently checked finding; malformed input handled; repeatable JSON; supported versions documented |
