@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "boardlint"
+version = "0.1.0.dev0"
+description = "Deterministic, explainable design review for KiCad PCBs"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.scripts]
+boardlint = "boardlint.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["boardlint*"]
